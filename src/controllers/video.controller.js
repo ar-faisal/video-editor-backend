@@ -6,14 +6,16 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 exports.upload = async (req, res) => {
-    const file = req.file;
-    if (!file) return res.status(400).send('No file uploaded');
-  
-    const { originalname, filename, size, path: filepath } = file;
-  
-    // Get video duration using ffmpeg
+  const file = req.file;
+  if (!file) return res.status(400).send('No file uploaded');
+
+  const { originalname, filename, size, path: filepath } = file;
+
+  // Get video duration using ffmpeg
+  try {
     const duration = await ffmpeg.getDuration(filepath);
-  
+
+    // Save video info in the database
     const video = await prisma.video.create({
       data: {
         name: originalname,
@@ -22,9 +24,12 @@ exports.upload = async (req, res) => {
         size,
       },
     });
-  
+
     res.status(201).json(video);
-  };
+  } catch (error) {
+    res.status(500).send('Error processing video');
+  }
+};
   
 // Trimming
 exports.trim = async (req, res) => {
