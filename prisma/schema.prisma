@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Video {
+  id             Int      @id @default(autoincrement())
+  name           String
+  path           String
+  trimmedPath    String?
+  subtitlePath   String?
+  renderedPath   String?
+  duration       Float
+  size           Int
+  status         String   @default("uploaded")
+  trimStart      String?
+  trimEnd        String?
+  subtitles      Json?    // 👈 array of { text, start, end } stored here
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
