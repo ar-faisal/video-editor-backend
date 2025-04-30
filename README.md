@@ -3,10 +3,13 @@
 Open the .env file and replace the existing connection string with your PostgreSQL connection string:
 DATABASE_URL="postgresql://postgres:1212@localhost:5432/video_editor"
 
-2) Install dependencies:
+2) Add the table into the database
+npx prisma migrate dev --name init
+
+3) Install dependencies:
 npm install
 
-3) Start the backend server:
+4) Start the backend server:
 npm run start
 
 
