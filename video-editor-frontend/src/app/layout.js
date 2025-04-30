@@ -1,9 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/styles.scss";
-import "@/styles/style.css"
+import "./globals.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import StoreProvider from "@/redux/Providers";
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,14 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
+        <header className="">
+          <div className="header-inner mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold">Video Editor</h1>
+          </div>
+        </header>
           {children}
         </StoreProvider>
+        <ToastContainer />
       </body>
     </html>
   );

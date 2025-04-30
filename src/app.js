@@ -3,6 +3,12 @@ const videoRoutes = require('./routes/video.routes');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from your frontend
+  credentials: true,               // Allow cookies if needed
+}));
 
 const swaggerOptions = {
   swaggerDefinition: {

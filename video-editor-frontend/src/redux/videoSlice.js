@@ -1,13 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  videoFile: null,
-  videoDuration: null,
-  videoThumbnail: null,
+  videoDetails: {},
   timeline: [],
   audio: null,
-  subtitles: [],
-  overlays: [],
 };
 
 const videoSlice = createSlice({
@@ -15,13 +11,8 @@ const videoSlice = createSlice({
   initialState,
   reducers: {
     setVideoFile: (state, action) => {
-      state.videoFile = action.payload;
-    },
-    setVideoDuration: (state, action) => {
-      state.videoDuration = action.payload;
-    },
-    setVideoThumbnail: (state, action) => {
-      state.videoThumbnail = action.payload;
+      console.log(action.payload, "action/payload")
+      state.videoDetails = action.payload;
     },
     addScene: (state, action) => {
       state.timeline.push(action.payload);
@@ -32,24 +23,14 @@ const videoSlice = createSlice({
     setAudio: (state, action) => {
       state.audio = action.payload;
     },
-    setSubtitles: (state, action) => {
-      state.subtitles = action.payload;
-    },
-    setOverlays: (state, action) => {
-      state.overlays = action.payload;
-    },
   },
 });
 
 export const {
   setVideoFile,
-  setVideoDuration,
-  setVideoThumbnail,
   addScene,
   removeScene,
   setAudio,
-  setSubtitles,
-  setOverlays,
 } = videoSlice.actions;
 
 export default videoSlice.reducer;
