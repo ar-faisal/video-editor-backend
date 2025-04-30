@@ -20,3 +20,7 @@ npm install
 
 3) Start the development server:
 npm run dev
+
+
+SMALL DEMOSTRATION VIDEO
+https://jam.dev/c/5debe41d-0cdc-4310-85b6-382562389d80
